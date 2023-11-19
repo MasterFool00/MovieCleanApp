@@ -32,11 +32,8 @@ jobs:
       - run:
           name: Set Java 17 as Default
           command: |
-            sudo update-alternatives --install /usr/bin/java java $JDK_DIR/bin/java 1
-            sudo update-alternatives --install /usr/bin/javac javac $JDK_DIR/bin/javac 1
-            sudo update-alternatives --set java $JDK_DIR/bin/java
-            sudo update-alternatives --set javac $JDK_DIR/bin/javac
-
+            echo "export JAVA_HOME=$JDK_DIR" >> $BASH_ENV
+            echo "export PATH=$JDK_DIR/bin:$PATH" >> $BASH_ENV
             java -version  # Memeriksa perubahan versi Java
       - run:
           name: Download Dependencies
