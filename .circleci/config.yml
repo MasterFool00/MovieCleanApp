@@ -17,10 +17,9 @@ jobs:
           name: Install OpenJDK 17
           command: |
             sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B53DC80D13EDEF05
-            sudo apt update
-            sudo apt install openjdk-17-jdk
-            sudo update-alternatives --set java /usr/lib/jvm/java-17-openjdk-amd64/bin/java
-            sudo update-alternatives --set javac /usr/lib/jvm/java-17-openjdk-amd64/bin/javac
+            sudo apt-get update
+            sudo apt-get upgrade
+            sudo apt install openjdk-17-jdk openjdk-17-jre
             java -version
       - run:
           name: Download Dependencies
