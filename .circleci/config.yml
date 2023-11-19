@@ -19,7 +19,7 @@ jobs:
             sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B53DC80D13EDEF05
             sudo apt update
             sudo apt upgrade
-            sudo apt install openjdk-11-jdk
+            sudo apt install openjdk-17-jdk
             java -version
       - run:
           name: Download Dependencies
