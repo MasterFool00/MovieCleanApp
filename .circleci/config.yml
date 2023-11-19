@@ -18,11 +18,21 @@ jobs:
           name: Chmod permissions
           command: sudo chmod +x ./gradlew
       - run:
-          name: Install JDK 17
+          name: Download and Install JDK 17
           command: |
-            sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-17/bin/java 1
-            sudo update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/jdk-17/bin/javac 1
-            java -version
+            JDK_URL="https://download.java.net/java/GA/jdk17/0d483333a00540d886896bac774ff48b/35/GPL/openjdk-17_linux-x64_bin.tar.gz"
+            JDK_DIR="$HOME/jdk-17"
+
+            mkdir -p $JDK_DIR
+            curl -L $JDK_URL -o jdk.tar.gz
+            tar xzf jdk.tar.gz -C $JDK_DIR --strip-components=1
+            rm jdk.tar.gz
+
+            echo 'export PATH=$JDK_DIR/bin:$PATH' >> $BASH_ENV
+            source $BASH_ENV
+
+            java -version  # Memeriksa instalasi JDK
+
       - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies
