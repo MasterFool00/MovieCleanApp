@@ -14,19 +14,12 @@ import com.waffle.core.base.BaseFragment
 import org.koin.android.ext.android.inject
 
 class SplashFragment : BaseFragment() {
-
-    private lateinit var binding : FragmentSplashBinding
-
-    private val viewModel : HomeViewModel by inject()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        // Inflate the layout for this fragment
-        binding = FragmentSplashBinding.inflate(inflater)
-        return binding.root
+    ): View? {
+        return inflater.inflate(R.layout.fragment_splash, container, false)
     }
-
     override fun onViewCreated(savedInstanceState: Bundle?) {
     }
     override fun observeData() {
