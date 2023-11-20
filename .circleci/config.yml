@@ -16,26 +16,11 @@ jobs:
           name: Chmod permissions
           command: sudo chmod +x ./gradlew
       - run:
-          name: Download and Install JDK 17
-          command: |
-            JDK_URL="https://download.java.net/java/GA/jdk17/0d483333a00540d886896bac774ff48b/35/GPL/openjdk-17_linux-x64_bin.tar.gz"
-            JDK_DIR="$HOME/jdk-17"
-
-            mkdir -p $JDK_DIR
-            curl -L $JDK_URL -o jdk.tar.gz
-            tar xzf jdk.tar.gz -C $JDK_DIR --strip-components=1
-            rm jdk.tar.gz
-
-            echo 'export PATH=$JDK_DIR/bin:$PATH' >> $BASH_ENV
-            source $BASH_ENV
-
-            java -version  # Memeriksa instalasi JDK
+          name: Create Local Properties
+          command: echo "sdk.dir=$ANDROID_HOME" > local.properties
       - run:
-          name: Set Java 17 as Default
-          command: |
-            echo "export JAVA_HOME=$JDK_DIR" >> $BASH_ENV
-            echo "export PATH=$JDK_DIR/bin:$PATH" >> $BASH_ENV
-            java -version  # Memeriksa perubahan versi Java
+          name: Accept Android SDK Licenses
+          command: (yes || true) | sdkmanager --licenses
       - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies
