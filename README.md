@@ -1,3 +1,3 @@
-# DicodingExpert
+# MovieCleanApp
 
-[![Waffle000](https://circleci.com/gh/Waffle000/MovieCleanApp.svg?style=svg)](https://circleci.com/gh/Waffle000/MovieCleanApp)
+[![MasterFool00](https://circleci.com/gh/MasterFool00/MovieCleanApp.svg?style=svg)](https://circleci.com/gh/MasterFool00/MovieCleanApp)
