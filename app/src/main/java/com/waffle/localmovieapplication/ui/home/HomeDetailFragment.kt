@@ -1,5 +1,6 @@
 package com.waffle.localmovieapplication.ui.home
 
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,7 +19,11 @@ class HomeDetailFragment : BaseFragment() {
     private lateinit var binding: FragmentHomeDetailBinding
 
     private val data by lazy {
-        arguments?.getParcelable(DATA) ?: Popular(0,null,null,null,null,null,null, null, false)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            arguments?.getParcelable(DATA, Popular::class.java) ?: Popular(0,null,null,null,null,null,null, null, false)
+        } else {
+            arguments?.getParcelable(DATA) ?: Popular(0,null,null,null,null,null,null, null, false)
+        }
     }
 
     private val viewModel : HomeViewModel by inject()

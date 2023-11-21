@@ -13,10 +13,9 @@ import com.waffle.localmovieapplication.R
 import com.waffle.localmovieapplication.databinding.ItemPopularBinding
 
 class HomeAdapter(
+    private val list : List<Popular>,
     private val fragment: Fragment
 ): RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
-
-    private val list = ArrayList<Popular>()
     class ViewHolder(val binding : ItemPopularBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -46,14 +45,6 @@ class HomeAdapter(
             ivThumbnail.loadImage(item.posterPath)
 
         }
-    }
-
-    fun setData(dataList: List<Popular>) {
-        with(this.list) {
-            clear()
-            addAll(dataList)
-        }
-        notifyDataSetChanged()
     }
 
 }

@@ -11,6 +11,7 @@ import com.waffle.core.base.BaseFragment
 import com.waffle.core.base.Resource
 import com.waffle.localmovieapplication.databinding.FragmentHomeBinding
 import org.koin.android.ext.android.inject
+import xyz.hasnat.sweettoast.SweetToast
 
 
 class HomeFragment : BaseFragment() {
@@ -18,8 +19,6 @@ class HomeFragment : BaseFragment() {
     private lateinit var binding: FragmentHomeBinding
 
     private val viewModel: HomeViewModel by inject()
-
-    private lateinit var homeAdapter : HomeAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,7 +29,6 @@ class HomeFragment : BaseFragment() {
     }
 
     override fun onViewCreated(savedInstanceState: Bundle?) {
-        homeAdapter = HomeAdapter(this)
     }
 
     override fun observeData() {
@@ -38,14 +36,17 @@ class HomeFragment : BaseFragment() {
             getPopularList().observe(this@HomeFragment) {data ->
                 when(data) {
                     is Resource.Error -> {
-                        Toast.makeText(requireContext(), data.message, Toast.LENGTH_SHORT).show()
+                        SweetToast.error(requireContext(), data.message)
                         hideLoading(binding.pbLoading)
                     }
                     is Resource.Loading -> {
                         showLoading(binding.pbLoading)
                     }
                     is Resource.Success -> {
-                        homeAdapter.setData(data.data ?: listOf())
+                        binding.rvMoviesByCategory.apply {
+                            adapter = HomeAdapter(data.data ?: listOf(), this@HomeFragment)
+                            layoutManager = LinearLayoutManager(requireContext())
+                        }
                         hideLoading(binding.pbLoading)
                     }
                 }
@@ -56,10 +57,6 @@ class HomeFragment : BaseFragment() {
 
     override fun init() {
         binding.apply {
-            rvMoviesByCategory.apply {
-                adapter = homeAdapter
-                layoutManager = LinearLayoutManager(requireContext())
-            }
             btnFavorite.setOnClickListener{
                 startActivity(Intent(requireContext(), Class.forName("com.waffle.favoritefeature.MainActivity")))
             }

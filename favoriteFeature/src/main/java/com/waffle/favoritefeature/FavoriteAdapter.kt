@@ -13,10 +13,9 @@ import com.waffle.core.utils.loadImage
 import com.waffle.favoritefeature.databinding.ItemFavoriteBinding
 
 class FavoriteAdapter(
+    private val list : List<Popular>,
     private val fragment: Fragment
 ): RecyclerView.Adapter<FavoriteAdapter.ViewHolder>() {
-
-    private val list = ArrayList<Popular>()
 
     class ViewHolder(val binding : ItemFavoriteBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -47,14 +46,6 @@ class FavoriteAdapter(
             ivThumbnail.loadImage(item.posterPath)
 
         }
-    }
-
-    fun setData(dataList: List<Popular>) {
-        with(this.list) {
-            clear()
-            addAll(dataList)
-        }
-        notifyDataSetChanged()
     }
 
 }

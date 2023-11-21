@@ -6,9 +6,4 @@
         <item name="strokeColor">@color/cardview_dark_background</item>
         <item name="strokeWidth">5dp</item>
     </style>
-
-    <style name="text_input_style" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
-        <item name="boxStrokeColor">#fff</item>
-        <item name="boxStrokeWidth">1dp</item>
-    </style>
 </resources>

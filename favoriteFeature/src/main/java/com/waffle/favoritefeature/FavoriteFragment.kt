@@ -9,17 +9,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.waffle.core.base.BaseFragment
 import com.waffle.core.base.Resource
 import com.waffle.favoritefeature.databinding.FragmentFavoriteBinding
-import com.waffle.favoritefeature.module.favoriteViewModelModule
 import org.koin.android.ext.android.inject
-import org.koin.core.context.loadKoinModules
+import xyz.hasnat.sweettoast.SweetToast
 
 class FavoriteFragment : BaseFragment() {
 
     private lateinit var binding : FragmentFavoriteBinding
 
     private val viewModel : FavoriteViewModel by inject()
-
-    private lateinit var favoriteAdapter: FavoriteAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,7 +27,6 @@ class FavoriteFragment : BaseFragment() {
     }
 
     override fun onViewCreated(savedInstanceState: Bundle?) {
-        favoriteAdapter = FavoriteAdapter(this)
     }
 
     override fun observeData() {
@@ -38,14 +34,17 @@ class FavoriteFragment : BaseFragment() {
             getPopularFavorite().observe(this@FavoriteFragment) { data ->
                 when(data) {
                     is Resource.Error -> {
-                        Toast.makeText(requireContext(), data.message, Toast.LENGTH_SHORT).show()
+                        SweetToast.error(requireContext(), data.message)
                         hideLoading(binding.pbLoading)
                     }
                     is Resource.Loading -> {
                         showLoading(binding.pbLoading)
                     }
                     is Resource.Success -> {
-                        favoriteAdapter.setData(data.data ?: listOf())
+                        binding.rvFavorite.apply {
+                            adapter = FavoriteAdapter(data.data ?: listOf(), this@FavoriteFragment)
+                            layoutManager = LinearLayoutManager(requireContext())
+                        }
                         hideLoading(binding.pbLoading)
                     }
                 }
@@ -56,10 +55,6 @@ class FavoriteFragment : BaseFragment() {
     override fun init() {
         binding.apply {
             btnBack.setOnClickListener { activity?.finish() }
-            rvFavorite.apply {
-                adapter = favoriteAdapter
-                layoutManager = LinearLayoutManager(requireContext())
-            }
         }
     }
 }
