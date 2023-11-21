@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="image_button_back">Image button back</string>
+    <string name="favorite">Favorite</string>
+    <string name="image_back_drop">image back drop</string>
+    <string name="image_favorite_border">image favorite border</string>
+    <string name="image_favorite_full">image favorite full</string>
+    <string name="overview">Overview</string>
+</resources>

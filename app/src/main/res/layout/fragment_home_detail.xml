@@ -18,7 +18,8 @@
             <ImageView
                 android:id="@+id/iv_backdrop"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:contentDescription="@string/image_back_drop" />
 
             <ImageView
                 android:id="@+id/btn_back"
@@ -30,7 +31,8 @@
                 android:padding="3dp"
                 android:src="@drawable/ic_arrow_back"
                 app:layout_collapseMode="pin"
-                app:tint="@color/black" />
+                app:tint="@color/black"
+                android:contentDescription="@string/image_button_back" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -62,8 +64,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_toRightOf="@id/cl_parent_image"
+                android:layout_marginStart="16dp"
+                android:layout_toEndOf="@id/cl_parent_image"
                 android:orientation="vertical">
 
                 <TextView
@@ -133,10 +135,11 @@
                 app:cardCornerRadius="16dp"
                 android:outlineAmbientShadowColor="@color/white"
                 android:outlineSpotShadowColor="@color/white"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
                 android:background="@drawable/bg_circle_white"
-                android:backgroundTint="@color/dark_grey">
+                android:backgroundTint="@color/dark_grey"
+                tools:targetApi="p">
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -148,7 +151,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_favorite_border"
-                        app:tint="@color/white" />
+                        app:tint="@color/white"
+                        android:contentDescription="@string/image_favorite_border" />
 
                     <ImageView
                         android:id="@+id/iv_fav"
@@ -156,7 +160,8 @@
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_favorite"
                         android:visibility="gone"
-                        app:tint="@color/white" />
+                        app:tint="@color/white"
+                        android:contentDescription="@string/image_favorite_full" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
@@ -168,7 +173,7 @@
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/poppins_semibold"
-            android:text="Overview"
+            android:text="@string/overview"
             android:textColor="@color/white"
             android:textSize="12sp" />
 

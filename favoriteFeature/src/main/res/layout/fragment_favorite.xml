@@ -21,7 +21,8 @@
                 android:id="@+id/btn_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_arrow_back"/>
+                android:src="@drawable/ic_arrow_back"
+                android:contentDescription="@string/image_button_back" />
 
             <TextView
                 android:id="@+id/tv_title_movie"
@@ -30,7 +31,7 @@
                 android:layout_centerHorizontal="true"
                 android:fontFamily="@font/poppins_semibold"
                 android:textColor="@color/white"
-                android:text="Favorite" />
+                android:text="@string/favorite" />
         </RelativeLayout>
 
         <androidx.recyclerview.widget.RecyclerView

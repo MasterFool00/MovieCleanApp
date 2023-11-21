@@ -24,19 +24,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="Hello User, \nWhat Movies Today?"
+                android:text="@string/hello_user_nwhat_movies_today"
                 android:textColor="@color/white"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <ImageView
                 android:id="@+id/btn_favorite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_favorite"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="16dp"
-                app:tint="@color/white" />
+                android:layout_marginEnd="16dp"
+                app:tint="@color/white"
+                android:contentDescription="@string/image_button_favorite" />
 
         </RelativeLayout>
 
@@ -47,35 +48,6 @@
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="8dp" />
     </LinearLayout>
-
-    <RelativeLayout
-        android:id="@+id/parent_notif"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:visibility="gone"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/bg_rounded_primary_full_stroke">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:layout_toLeftOf="@id/btn_show_new_data"
-            android:layout_marginRight="8dp"
-            android:layout_centerVertical="true"
-            android:text="Data Lama Telah Terhapus Dan Tergantikan Dengan Data Baru"/>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_show_new_data"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tampilkan"
-            android:backgroundTint="@color/dark_grey"
-            android:textColor="@color/white"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"/>
-    </RelativeLayout>
 
     <ProgressBar
         android:id="@+id/pb_loading"

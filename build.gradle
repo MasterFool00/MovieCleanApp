@@ -6,3 +6,6 @@ plugins {
     id 'com.android.dynamic-feature' version '8.0.2' apply false
 }
 
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
